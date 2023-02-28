@@ -174,36 +174,41 @@ Now the cropped plate number will be fed to OCR
 
 
 ### Procedure
-what she did
 1) for detection
-  1-1) train YOLOv7 on a dataset(with augmentation: shear, flip[flip also flip the number but,not important for detection phase]) on colab
-  1-2) save the model (detection model)
-  what i did:
-     - I trained yolov7 both on colab and locan machine on the same data as she did
-     - I also trained Yolov8 on another dataset (achieved better mAP@0.5)
+     
+       what she did
+
+       1-1) train YOLOv7 on a dataset(with augmentation: shear, flip[flip also flip the number but,not important for detection phase]) on colab
+       1-2) save the model (detection model)
+       
+        what i did:
+          - I trained yolov7 both on colab and locan machine on the same data as she did
+          - I also trained Yolov8 on another dataset (achieved better mAP@0.5)
      
 2) for recognition
-  2-1) no annotation dataset available-> she generate
-  2-2) generation based on some plate template, persian glyph, noise, font,and some transformation
-  2-3) after creating this dataset(plate image-annotation sequence[length=8]), she tried to create another dataset since she wanted to Recognize character seperately
-  2-4) based on a proportion, she seperated each number and character of every plate, and created a dataset of (char/number image-char/num annotation)
-  2-5) she trained a simple Dense Classifier , and saved the model (recognition model)
-  2-6) now, for each incoming image
-	  image->detection model->cropped plate image->hough transormation based deskew to align the plate horizontally->
-	  cropped plate image->hough transormation based deskew to align the plate horizontally-> aligned text image
-	  aligned text image->seperate the whole plate image based on some proportion to 8 chops-> eight char images (as a batch)
-	  eight char images (as a batch)->recognition model-> Recognition (text sequence output)
-	  a .cpp file also attached in yolov8 directory for inference by c++
+
+	     what she did
+         2-1) no annotation dataset available-> she generate
+         2-2) generation based on some plate template, persian glyph, noise, font,and some transformation
+         2-3) after creating this dataset(plate image-annotation sequence[length=8]), she tried to create another dataset since she wanted to Recognize character seperately
+         2-4) based on a proportion, she seperated each number and character of every plate, and created a dataset of (char/number image-char/num annotation)
+         2-5) she trained a simple Dense Classifier , and saved the model (recognition model)
+         2-6) now, for each incoming image
+	     - image->detection model->cropped plate image->hough transormation based deskew to align the plate horizontally->
+	     - cropped plate image->hough transormation based deskew to align the plate horizontally-> aligned text image
+	     - aligned text image->seperate the whole plate image based on some proportion to 8 chops-> eight char images (as a batch)
+	     - eight char images (as a batch)->recognition model-> Recognition (text sequence output)
+         - one cpp file also attached in yolov8 directory for inference by c++
 	  
-  what i did:
-     - i used a ready dataset  (char/number image-char/num annotation) in internet to train two models (1- Convolutional based classifier 2- anothe model from my github repo noisyMNIST)
-     - i also wanted to train a CTC or transformer based model on the generated dataset (plate image-annotation sequence[length=8]), [i will do in future]
-       now, for each incoming image
-	  image->detection model->cropped plate image
-	  cropped plate image->hough transormation based deskew to align the plate horizontally[i also wrote a code for text alignment based on fourier transform]-> aligned text image
-	  aligned text image->seperate the whole plate image based on some proportion to 8 chops-> eight char images (as a batch)
-	  eight char images (as a batch)->recognition model-> Recognition (text sequence output)
-     - 
+         what i did:
+           - i used a ready dataset  (char/number image-char/num annotation) in internet to train two models (1- Convolutional based classifier 2- anothe model from my github repo noisyMNIST)
+          - i also wanted to train a CTC or transformer based model on the generated dataset (plate image-annotation sequence[length=8]), [i will do in future]
+            now, for each incoming image
+	        - image->detection model->cropped plate image
+	        - cropped plate image->hough transormation based deskew to align the plate horizontally[i also wrote a code for text alignment based on fourier transform]-> aligned text image
+            - aligned text image->seperate the whole plate image based on some proportion to 8 chops-> eight char images (as a batch)
+	        - eight char images (as a batch)->recognition model-> Recognition (text sequence output)
+   
     
 
 ### How to deploy it?
