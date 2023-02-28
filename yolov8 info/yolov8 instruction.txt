@@ -1,0 +1,19 @@
+1) make a directory in your pc
+2) cd to this directory
+3) create a virtualenv in this directory 
+   py -m venv myyolov8   (myyolov8 is the name of my virtual env)
+4) activate this venv :
+   myyolov8\Scripts\acivate
+5) upgrade pip
+   python -m pip install --upgrade pip
+6) install ultralytics
+   pip install ultralytics
+
+7) for running main.py file that i attached to the email, choose the appropriate interpreter: 
+   interpretor should be in the directory of virual env that you have already created. it is a python.exe file in Script directory
+8) you may need to change the directory of image and model in line 14 (image), 31(onnx model)
+9) run the main.py file
+
+
+
+Note: there is no need to stride over the image, and do inference on every square images. the inference is done directly on the rectangle image
