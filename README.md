@@ -193,7 +193,7 @@ what she did
 	  cropped plate image->hough transormation based deskew to align the plate horizontally-> aligned text image
 	  aligned text image->seperate the whole plate image based on some proportion to 8 chops-> eight char images (as a batch)
 	  eight char images (as a batch)->recognition model-> Recognition (text sequence output)
-	  # a .cpp file also attached in yolov8 directory for inference by c++
+	  a .cpp file also attached in yolov8 directory for inference by c++
 	  
   what i did:
      - i used a ready dataset  (char/number image-char/num annotation) in internet to train two models (1- Convolutional based classifier 2- anothe model from my github repo noisyMNIST)
